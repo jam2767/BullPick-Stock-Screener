@@ -6,6 +6,14 @@
   <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
 </head>
 <body>
+  <div class="container text-left">
+    <form th:action="@{/logout}" method="post">
+      <p>
+        Welcome to BullPick <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+      </p>
+      <input type="submit" value="Sign Out"/>
+    </form>
+  </div>
   <div class="container text-center">
     <div>
       <h1>BullPick Stock Screener User Home Page</h1>

@@ -3,6 +3,7 @@ package com.bullpick.stock.screener.controllers;
 import com.bullpick.stock.screener.User;
 import com.bullpick.stock.screener.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,10 @@ public class HomeController {
 
     @PostMapping("/process_registration")
     public String processUserRegistration(User user) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String encodedPassword = encoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+
         repo.save(user);
 
         return "registration_success";
