@@ -31,4 +31,10 @@ public class HomeController {
 
         return "registration_success";
     }
+
+    @GetMapping("/home")
+    public String viewUserHome() {
+
+        return "home";
+    }
 }
