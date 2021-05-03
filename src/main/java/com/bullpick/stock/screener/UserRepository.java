@@ -1,5 +1,6 @@
 package com.bullpick.stock.screener;
 
+import com.bullpick.stock.screener.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

@@ -1,4 +1,4 @@
-package com.bullpick.stock.screener;
+package com.bullpick.stock.screener.models;
 
 
 import javax.persistence.*;
