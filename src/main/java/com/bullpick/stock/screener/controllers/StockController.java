@@ -8,7 +8,9 @@ import net.bytebuddy.description.method.MethodDescription;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -41,8 +43,9 @@ public class StockController {
     }
 
    @GetMapping("/list")
-   @ResponseBody
-    public List stockDetails() {
+   //@RequestMapping(value = "nyseStockList")
+   //@ResponseBody
+    public String stockDetails(Model model) {
         String nyseStockInformation = webClientBuilder
                 .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(2 * 1024 * 1024))
                 .build()
@@ -58,7 +61,11 @@ public class StockController {
 
        List<Stock> nyseStockList = gsonNyseStock.fromJson(nyseStockInformation, nyseStockInformationListType);
 
-       return nyseStockList;
+       //return nyseStockList;
+
+       model.addAttribute("nyseStockList", nyseStockList);
+
+       return "list_stocks";
 
    }
 

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeLeaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>BullPick Home</title>
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+</head>
+<body>
+  <div class="container text-right">
+    <form th:action="@{/logout}" method="post">
+      <input type="submit" value="Sign Out"/>
+    </form>
+  </div>
+
+  <div class="container text-center">
+    <div>
+      <h1>All Stocks traded on NYSE and Nasdaq</h1>
+    </div>
+
+    <div class="container text-left">
+      <h2></h2>
+    </div>
+    <div>
+      <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+          <tr th:each="nyseStockList : ${nyseStockList}">
+            <td th:text="${nyseStockList.description}"></td>
+            <td th:text="${nyseStockList.symbol}"></td>
+            <td th:text="${nyseStockList.type}"></td>
+            <td th:text="${nyseStockList.mic}"></td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
