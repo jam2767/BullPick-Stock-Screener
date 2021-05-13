@@ -27,6 +27,12 @@
     <div>
       <table class="table table-striped table-bordered">
         <thead class="thead-dark">
+          <tr>
+            <th>Description</th>
+            <th>Stock Symbol</th>
+            <th>Stock Type</th>
+            <th>MIC</th>
+          </tr>
           <tr th:each="nyseStockList : ${nyseStockList}">
             <td th:text="${nyseStockList.description}"></td>
             <td th:text="${nyseStockList.symbol}"></td>
