@@ -26,6 +26,12 @@
     <div class="container text-left">
       <h2>Portfolios</h2>
     </div>
+
+    <div class="container text-right">
+      <form th:action="@{/list}" method="get">
+        <input type="submit" value="List"/>
+      </form>
+    </div>
     <div>
       <table class="table table-striped table-bordered">
         <thead class="thead-dark">
