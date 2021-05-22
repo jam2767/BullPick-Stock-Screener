@@ -46,6 +46,7 @@ public class StockController {
    //@RequestMapping(value = "nyseStockList")
    //@ResponseBody
     public String stockDetails(Model model) {
+        //get nyse stock information to list
         String nyseStockInformation = webClientBuilder
                 .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(2 * 1024 * 1024))
                 .build()
@@ -64,6 +65,27 @@ public class StockController {
        //return nyseStockList;
 
        model.addAttribute("nyseStockList", nyseStockList);
+
+       //get nasdaq capitol market information
+       String nasdaqStockInformation = webClientBuilder
+               .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(2 * 1024 * 1024))
+               .build()
+               .get()
+               .uri("https://finnhub.io/api/v1/stock/symbol?exchange=US&mic=XNAS&token=" + apiKey)
+               .retrieve()
+               .bodyToMono(String.class)
+               .block();
+
+       Gson gsonNasdaqStock = new Gson();
+
+       Type nasdaqStockInformationListType = new TypeToken<ArrayList<Stock>>(){}.getType();
+
+       List<Stock> nasdaqStockList = gsonNasdaqStock.fromJson(nasdaqStockInformation, nasdaqStockInformationListType);
+
+       //return nasdaqStockList;
+
+       model.addAttribute("nasdaqStockList", nasdaqStockList);
+
 
        return "list_stocks";
 

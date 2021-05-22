@@ -39,6 +39,12 @@
             <td th:text="${nyseStockList.type}"></td>
             <td th:text="${nyseStockList.mic}"></td>
           </tr>
+          <tr th:each="nasdaqStockList : ${nasdaqStockList}">
+              <td th:text="${nasdaqStockList.description}"></td>
+              <td th:text="${nasdaqStockList.symbol}"></td>
+              <td th:text="${nasdaqStockList.type}"></td>
+              <td th:text="${nasdaqStockList.mic}"></td>
+          </tr>
         </thead>
       </table>
     </div>
