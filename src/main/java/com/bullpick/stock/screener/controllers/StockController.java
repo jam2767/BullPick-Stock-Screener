@@ -27,25 +27,30 @@ public class StockController {
     private String apiKey = System.getenv("API_KEY");
 
     @GetMapping("/stock")
-    @ResponseBody
-    public String envDetails() {
+    public String stockDetails(Model model) {
 
-        String stockName = webClientBuilder
-                .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(2 * 1024 * 1024))
-                .build()
-                .get()
-                .uri("https://finnhub.io/api/v1/search?q=apple&" + "token=" + apiKey)
-                .retrieve()
-                .bodyToMono(String.class)
-                .block();
+//        String stockName = webClientBuilder
+//                .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(2 * 1024 * 1024))
+//                .build()
+//                .get()
+//                .uri("https://finnhub.io/api/v1/search?q=apple&" + "token=" + apiKey)
+//                .retrieve()
+//                .bodyToMono(String.class)
+//                .block();
+        String stockOfInterest = "ASRT";
+        String[] stockTest = {"https://widget.finnhub.io/widgets/stocks/chart?symbol=", stockOfInterest, "&amp;watermarkColor=%231db954&amp;backgroundColor=%23222222&amp;textColor=white"};
+    String candlestickWidget = String.join("", stockTest);
+    System.out.println(candlestickWidget);
 
-        return stockName;
+    model.addAttribute("candlestickWidget", candlestickWidget);
+
+        return "stock_details";
     }
 
    @GetMapping("/list")
    //@RequestMapping(value = "nyseStockList")
    //@ResponseBody
-    public String stockDetails(Model model) {
+    public String stockList(Model model) {
         //get nyse stock information to list
         String nyseStockInformation = webClientBuilder
                 .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(2 * 1024 * 1024))
@@ -90,6 +95,7 @@ public class StockController {
        return "list_stocks";
 
    }
+
 
 
 }
