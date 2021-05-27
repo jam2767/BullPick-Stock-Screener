@@ -38,6 +38,7 @@ public class StockController {
 //                .bodyToMono(String.class)
 //                .block();
         String stockOfInterest = "ASRT";
+        //String stockOfInterest = nyseStockList.symbol;
         String[] stockTest = {"https://widget.finnhub.io/widgets/stocks/chart?symbol=", stockOfInterest, "&amp;watermarkColor=%231db954&amp;backgroundColor=%23222222&amp;textColor=white"};
     String candlestickWidget = String.join("", stockTest);
     System.out.println(candlestickWidget);
