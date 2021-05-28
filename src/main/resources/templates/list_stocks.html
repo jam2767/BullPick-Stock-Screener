@@ -36,7 +36,8 @@
           <tr th:each="nyseStockList : ${nyseStockList}">
             <td th:text="${nyseStockList.description}"></td>
             <td>
-              <a th:href="@{/stock(search=${nyseStockList.symbol})}" th:text="${nyseStockList.symbol}" target="_blank"/>
+              <a th:href="@{/stock(search=${nyseStockList.symbol})}"
+                 th:text="${nyseStockList.symbol}"/>
             </td>
             <td th:text="${nyseStockList.type}"></td>
             <td th:text="${nyseStockList.mic}"></td>
@@ -44,7 +45,8 @@
           <tr th:each="nasdaqStockList : ${nasdaqStockList}">
               <td th:text="${nasdaqStockList.description}"></td>
               <td>
-                <a th:href="@{/stock(search=${nasdaqStockList.symbol})}" th:text="${nasdaqStockList.symbol}" target="_blank"/>
+                <a th:href="@{/stock(search=${nasdaqStockList.symbol})}"
+                   th:text="${nasdaqStockList.symbol}"/>
               </td>
               <td th:text="${nasdaqStockList.type}"></td>
               <td th:text="${nasdaqStockList.mic}"></td>

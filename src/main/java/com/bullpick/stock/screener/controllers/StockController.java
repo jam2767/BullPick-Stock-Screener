@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -27,7 +28,8 @@ public class StockController {
     private String apiKey = System.getenv("API_KEY");
 
     @GetMapping("/stock")
-    public String stockDetails(Model model) {
+    //@RequestMapping("/stock")
+    public String stockDetails(@RequestParam String search, Model model) {
 
 //        String stockName = webClientBuilder
 //                .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(2 * 1024 * 1024))
@@ -37,9 +39,9 @@ public class StockController {
 //                .retrieve()
 //                .bodyToMono(String.class)
 //                .block();
-        String stockOfInterest = "ASRT";
+        //String stockOfInterest = "ASRT";
         //String stockOfInterest = nyseStockList.symbol;
-        String[] stockTest = {"https://widget.finnhub.io/widgets/stocks/chart?symbol=", stockOfInterest, "&amp;watermarkColor=%231db954&amp;backgroundColor=%23222222&amp;textColor=white"};
+        String[] stockTest = {"https://widget.finnhub.io/widgets/stocks/chart?symbol=", search, "&amp;watermarkColor=%231db954&amp;backgroundColor=%23222222&amp;textColor=white"};
     String candlestickWidget = String.join("", stockTest);
     System.out.println(candlestickWidget);
 
