@@ -20,14 +20,28 @@
     <p>
     </p>
   </div>
-
+  <div class="container text-left">
+    <h2 th:text="${search}"></h2>
+  </div>
+  <div class="container text-right">
+    <h2>Current Price</h2>
+  </div>
   <div class="container text-center">
     <div>
       <iframe width="100%" frameborder="0" height="400" src th:src="${candlestickWidget}"></iframe>
     </div>
 
     <div class="container text-left">
-      <h2>Portfolios</h2>
+      <h2>Performance Details</h2>
+    </div>
+
+    <div class="container text-left">
+      <h3 th:text="'Open: ' + ${stockQuoteObject.o}">Open: </h3>
+      <h3 th:text="'Close: ' + ${stockQuoteObject.c}">Day High: </h3>
+      <h3 th:text="'Day High: ' + ${stockQuoteObject.h}">Day High: </h3>
+      <h3 th:text="'Day Low: ' + ${stockQuoteObject.l}">Day Low: </h3>
+      <h3 th:text="'Previous Close: ' + ${stockQuoteObject.pc}">Previous Close: </h3>
+      <h3 th:text="'Trade Volume: ' + ${stockQuoteObject.t}">Trade Volume: </h3>
     </div>
 
     <div class="container text-right">
