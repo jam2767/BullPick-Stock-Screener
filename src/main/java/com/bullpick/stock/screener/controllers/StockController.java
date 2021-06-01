@@ -4,6 +4,7 @@ package com.bullpick.stock.screener.controllers;
 import com.bullpick.stock.screener.models.Stock;
 import com.bullpick.stock.screener.models.StockFinancials;
 import com.bullpick.stock.screener.models.StockQuote;
+import com.bullpick.stock.screener.models.data.StockQuoteRepository;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import net.bytebuddy.description.method.MethodDescription;
@@ -23,6 +24,9 @@ import java.util.List;
 
 @Controller
 public class StockController {
+
+    @Autowired
+    private StockQuoteRepository stockQuoteRepository;
 
     @Autowired
     private WebClient.Builder webClientBuilder;

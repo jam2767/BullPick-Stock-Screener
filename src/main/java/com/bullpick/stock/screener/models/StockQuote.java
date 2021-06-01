@@ -21,6 +21,18 @@ public class StockQuote extends Stock {
     private int t; //trade volume
     private float priceWhenAdded; //current price when added to a portfolio
 
+    public StockQuote(float previousClose, float openPrice, float currentPrice,
+                      float dayHi, float dayLo, int tradeVol, float priceOnAdded) {
+        this.pc = previousClose;
+        this.o = openPrice;
+        this.c = currentPrice;
+        this.h = dayHi;
+        this.l = dayLo;
+        this.t = tradeVol;
+        this.priceWhenAdded = priceOnAdded;
+    }
+
+    public StockQuote() {}
 
     public float getPc() {
         return pc;
