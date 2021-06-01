@@ -1,13 +1,26 @@
 package com.bullpick.stock.screener.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "stocks")
 public class StockQuote extends Stock {
+
+    @Id
+    @GeneratedValue()
+    private int id;
 
     private float pc; //previous close price
     private float o; //open price
-    private float c; //close price
+    private float c; //current price
     private float h; //day high price
     private float l; //day low price
     private int t; //trade volume
+    private float priceWhenAdded; //current price when added to a portfolio
+
 
     public float getPc() {
         return pc;
@@ -55,5 +68,14 @@ public class StockQuote extends Stock {
 
     public void setT(int t) {
         this.t = t;
+    }
+
+    public float getPriceWhenAdded() {
+        return priceWhenAdded;
+    }
+
+    //can only set price when added once
+    public void setPriceWhenAdded(float priceWhenAdded) {
+        this.priceWhenAdded = priceWhenAdded;
     }
 }

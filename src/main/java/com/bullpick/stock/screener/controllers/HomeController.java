@@ -1,7 +1,7 @@
 package com.bullpick.stock.screener.controllers;
 
 import com.bullpick.stock.screener.models.User;
-import com.bullpick.stock.screener.UserRepository;
+import com.bullpick.stock.screener.models.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
