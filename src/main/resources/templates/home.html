@@ -49,7 +49,10 @@
             <th>Name</th>
             <th>Description</th>
             <tr th:each="portfolio : ${portfolios}">
-            <td th:text="${portfolio.name}"></td>
+            <td >
+              <a th:href="@{/portfolio(name=${portfolio.name})}"
+                 th:text="${portfolio.name}"/>
+            </td>
             <td th:text="${portfolio.description}"></td>
             </tr>
           </tr>

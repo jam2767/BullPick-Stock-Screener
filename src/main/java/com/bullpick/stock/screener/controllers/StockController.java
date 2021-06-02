@@ -4,6 +4,7 @@ package com.bullpick.stock.screener.controllers;
 import com.bullpick.stock.screener.models.Stock;
 import com.bullpick.stock.screener.models.StockFinancials;
 import com.bullpick.stock.screener.models.StockQuote;
+import com.bullpick.stock.screener.models.data.PortfolioRepository;
 import com.bullpick.stock.screener.models.data.StockQuoteRepository;
 import com.bullpick.stock.screener.models.data.StockRepository;
 import com.google.gson.Gson;
@@ -28,6 +29,9 @@ public class StockController {
 
     @Autowired
     private StockRepository stockRepository;
+
+    @Autowired
+    private PortfolioRepository portfolioRepository;
 
     @Autowired
     private WebClient.Builder webClientBuilder;
@@ -94,7 +98,15 @@ public class StockController {
         return "stock_details";
     }
 
-    @PostMapping("/stock")
+    @GetMapping("/stock/add")
+    public String displayAddStockForm(Model model) {
+        model.addAttribute("portfolios", portfolioRepository.findAll());
+        model.addAttribute("stocks", stockRepository.findAll());
+        model.addAttribute(new Stock());
+        return "add_stock";
+    }
+
+    @PostMapping("/stock/add")
     public String processAddStock(@ModelAttribute StockQuote stockQuoteObject, Model model) {
         model.addAttribute(new StockQuote());
         stockQuoteRepository.save(stockQuoteObject);
