@@ -12,21 +12,25 @@
     </form>
   </div>
 
+  <div class="container text-left">
+    <form th:action="@{/home}" method="get">
+      <input type="submit" value="Home"/>
+    </form>
+  </div>
+
   <div class="container text-center">
     <div>
       <h1>Add Stock to Portfolio</h1>
     </div>
     <div>
-    <div class="container text-left">
-      <h2>Portfolios</h2>
-    </div>
+
       <div class="container text-center">
         <form th:action="@{/stock}" method="get">
         <input type="text" placeholder="Stock/Company Name" name="search">
         <button type="submit">Quick Search</button>
         </form>
       </div>
-
+<p></p>
     <div class="form-group">
       <label th:for="portfolio">Portfolio</label>
       <select name="portfolioId">
@@ -34,23 +38,24 @@
                 th:text="${portfolio.name}"
                 th:value="${portfolio.id}"></option>
       </select>
+      <p></p>
+      <label th:for="stock">Stock</label>
+      <select name="stockId">
+        <option th:each="stock : ${stocks}"
+                th:text="${stock.symbol}"
+                th:value="${stock.id}"></option>
+      </select>
+      <a th:href="@{/list}">Find Stock</a>
+      <p></p>
+      <input type="submit" value="Add Stock to Portfolio" />
+
     </div>
 
-    <div class="container text-right">
-      <form th:action="@{/list}" method="get">
-        <input type="submit" value="List"/>
-      </form>
-    </div>
-    </div>
-    <div>
-      <table class="table table-striped table-bordered">
-        <thead class="thead-dark">
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-      </table>
+<!--    <div class="container text-right">-->
+<!--      <form th:action="@{/list}" method="get">-->
+<!--        <input type="submit" value="List"/>-->
+<!--      </form>-->
+<!--    </div>-->
     </div>
   </div>
 </body>
