@@ -5,6 +5,7 @@ import com.bullpick.stock.screener.models.Stock;
 import com.bullpick.stock.screener.models.StockFinancials;
 import com.bullpick.stock.screener.models.StockQuote;
 import com.bullpick.stock.screener.models.data.StockQuoteRepository;
+import com.bullpick.stock.screener.models.data.StockRepository;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import net.bytebuddy.description.method.MethodDescription;
@@ -12,10 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -27,6 +25,9 @@ public class StockController {
 
     @Autowired
     private StockQuoteRepository stockQuoteRepository;
+
+    @Autowired
+    private StockRepository stockRepository;
 
     @Autowired
     private WebClient.Builder webClientBuilder;
@@ -87,8 +88,18 @@ public class StockController {
 //        HashMap<String, StockFinancials> stockFinancialsHashMap = gsonStockFinancials.fromJson(stockFinancials, stockFinancialsType);
 //
 //        model.addAttribute("stockFinancialsHashMap", stockFinancialsHashMap);
-
+        stockQuoteObject.setSymbol(search);
+        model.addAttribute(new StockQuote());
+        stockQuoteRepository.save(stockQuoteObject);
         return "stock_details";
+    }
+
+    @PostMapping("/stock")
+    public String processAddStock(@ModelAttribute StockQuote stockQuoteObject, Model model) {
+        model.addAttribute(new StockQuote());
+        stockQuoteRepository.save(stockQuoteObject);
+
+        return "add_stock";
     }
 
    @GetMapping("/list")

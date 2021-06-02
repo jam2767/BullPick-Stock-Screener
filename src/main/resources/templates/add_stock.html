@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://thymeLeaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>BullPick Home</title>
+  <title>Add Stock to Portfolio</title>
   <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
 </head>
 <body>
@@ -12,22 +12,13 @@
     </form>
   </div>
 
-  <div class="container text-left">
-    <p>
-      Welcome to BullPick <b>[[${#request.userPrincipal.principal.fullName}]]</b>
-    </p>
-  </div>
-
   <div class="container text-center">
     <div>
-      <h1>BullPick Stock Screener User Home Page</h1>
+      <h1>Add Stock to Portfolio</h1>
     </div>
     <div>
     <div class="container text-left">
       <h2>Portfolios</h2>
-      <form th:action="@{/add/portfolio}" method="get">
-        <input type="submit" value="Add Portfolio"/>
-      </form>
     </div>
       <div class="container text-center">
         <form th:action="@{/stock}" method="get">
@@ -48,10 +39,6 @@
           <tr>
             <th>Name</th>
             <th>Description</th>
-            <tr th:each="portfolio : ${portfolios}">
-            <td th:text="${portfolio.name}"></td>
-            <td th:text="${portfolio.description}"></td>
-            </tr>
           </tr>
         </thead>
       </table>

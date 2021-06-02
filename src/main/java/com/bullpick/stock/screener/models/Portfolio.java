@@ -1,9 +1,8 @@
 package com.bullpick.stock.screener.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "portfolios")
@@ -13,31 +12,39 @@ public class Portfolio {
     @GeneratedValue()
     private int id;
 
-    private String portfolioName;
-    private String portfolioDescription;
+    private String name;
+    private String description;
+
+//    @ManyToMany
+//    private final List<Stock> stocks = new ArrayList<>();
+
+//    public List<Stock> getStocks() {
+//        return stocks;
+//    }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+//    public void setId(int id) {
+//        this.id = id;
+//    }
+
+    public String getName() {
+        return name;
     }
 
-    public String getPortfolioName() {
-        return portfolioName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setPortfolioName(String portfolioName) {
-        this.portfolioName = portfolioName;
+    public String getDescription() {
+        return description;
     }
 
-    public String getPortfolioDescription() {
-        return portfolioDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setPortfolioDescription(String portfolioDescription) {
-        this.portfolioDescription = portfolioDescription;
-    }
 
 }

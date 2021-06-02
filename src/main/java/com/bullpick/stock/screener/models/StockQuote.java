@@ -6,12 +6,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "stocks")
+@Table(name = "stockQuotes")
 public class StockQuote extends Stock {
 
-    @Id
-    @GeneratedValue()
-    private int id;
+//    @Id
+//    @GeneratedValue()
+//    private int id;
 
     private float pc; //previous close price
     private float o; //open price
@@ -33,6 +33,10 @@ public class StockQuote extends Stock {
     }
 
     public StockQuote() {}
+
+//    public int getId() {
+//        return id;
+//    }
 
     public float getPc() {
         return pc;

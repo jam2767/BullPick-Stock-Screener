@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeLeaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Stock to Portfolio</title>
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+</head>
+<body>
+  <div class="container text-right">
+    <form th:action="@{/logout}" method="post">
+      <input type="submit" value="Sign Out"/>
+    </form>
+  </div>
+
+  <div class="container text-left">
+    <form th:action="@{/home}" method="get">
+      <input type="submit" value="Home"/>
+    </form>
+  </div>
+
+  <div class="container text-center">
+    <div>
+      <h1>Create a Portfolio</h1>
+    </div>
+    <div>
+    <div class="container text-left">
+      <h2>Portfolios</h2>
+    </div>
+      <div class="container text-left">
+        <form method="post" style="max-width:600px">
+          <label th:for="name">Portfolio Name</label>
+        <input class="form-control" th:field= "${portfolio.name}" />
+
+
+      <div class="container text-left">
+        <label th:for="description">Portfolio Description</label>
+        <input class="form-control" th:field= "${portfolio.description}" />
+      </div>
+
+      <input type="submit" value="Add Portfolio" />
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+</body>
+</html>

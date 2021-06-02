@@ -1,12 +1,32 @@
 package com.bullpick.stock.screener.models;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "stockDescription")
 public class Stock {
 
-   private String description;
+    @Id
+    @GeneratedValue()
+    private int id;
+
+//    @ManyToMany(mappedBy = "stocks")
+//    private final List<Portfolio> portfolios = new ArrayList<>();
+
+    private String description;
    private String symbol;
    private String type;
    private String mic;
 
+//    public List<Portfolio> getPortfolios() {
+//        return portfolios;
+//    }
+
+    public int getId() {
+        return id;
+    }
     public String getDescription() {
         return description;
     }

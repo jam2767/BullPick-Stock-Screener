@@ -64,6 +64,13 @@
         </thead>
       </table>
     </div>
+
+    <div class="container-text-center">
+      <form th:action="@{/stock}" method="post">
+        <input type="submit" value="Add Stock" th:field="${stockQuoteObject}"/>
+      </form>
+    </div>
+
   </div>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.bullpick.stock.screener.controllers;
 
 import com.bullpick.stock.screener.models.User;
+import com.bullpick.stock.screener.models.data.PortfolioRepository;
 import com.bullpick.stock.screener.models.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,6 +15,14 @@ public class HomeController {
 
     @Autowired
     private UserRepository repo;
+
+    @Autowired
+    private PortfolioRepository portfolioRepository;
+
+//    @GetMapping
+//    private String displayAllPortfolios(Model model) {
+//        model.addAttribute("portfolios", po)
+//    }
 
     @GetMapping("")
     public String viewHomePage() {
@@ -37,9 +46,10 @@ public class HomeController {
         return "registration_success";
     }
 
+    //displays all portfolios
     @GetMapping("/home")
-    public String viewUserHome() {
-
+    public String viewUserHome(Model model) {
+    model.addAttribute("portfolios",portfolioRepository.findAll());
         return "home";
     }
 }
