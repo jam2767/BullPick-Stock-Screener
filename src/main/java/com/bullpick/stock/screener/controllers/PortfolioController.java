@@ -14,7 +14,7 @@ public class PortfolioController {
     private PortfolioRepository portfolioRepository;
 
     //display add portfolio form
-    @GetMapping("add/portfolio")
+    @GetMapping("portfolio/add")
     //@CrossOrigin
     public String displayAddPortfolioForm(Model model) {
         model.addAttribute(new Portfolio());
@@ -22,11 +22,10 @@ public class PortfolioController {
     }
 
     //process add portfolio form
-    @PostMapping("add/portfolio")
-    //@CrossOrigin
+    @PostMapping("portfolio/add")
     public String processAddPortfolioForm(@ModelAttribute Portfolio newPortfolio, Model model) {
         portfolioRepository.save(newPortfolio);
 
-        return "redirect:./";
+        return "redirect:../home";
     }
 }
