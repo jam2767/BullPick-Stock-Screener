@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeLeaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>BullPick Home</title>
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+</head>
+<body>
+  <div class="container text-right">
+    <form th:action="@{/logout}" method="post">
+      <input type="submit" value="Sign Out"/>
+    </form>
+  </div>
+  <div class="container text-left">
+    <form th:action="@{/home}" method="get">
+      <input type="submit" value="Home"/>
+    </form>
+  </div>
+  <div class="container text-left">
+    <table class="table table-striped">
+      <tr>
+        <th>ID</th>
+        <td th:text="${portfolio.id}"></td>
+        <th>Name</th>
+        <td th:text="${portfolio.name}"></td>
+        <th>Description</th>
+        <td th:text="${portfolio.description}"></td>
+      </tr>
+      <tr>
+        <th>Stocks</th>
+        <td>
+          <span th:each="stock : ${stocks}" th:text="${stock.symbol} + ',  '"></span>
+        </td>
+      </tr>
+    </table>
+
+    <a th:href="'/stock/add-portfolio?portfolioId=' + ${portfolio.id}">Add Stock</a>
+<!--    <p>-->
+<!--    </p>-->
+<!--  </div>-->
+<!--  <div class="container text-left">-->
+<!--    <h2 th:text="${search}"></h2>-->
+<!--  </div>-->
+<!--  <div class="container text-right">-->
+<!--    <h2 th:text="'Current Price: ' + ${stockQuoteObject.c} + ' USD'"></h2>-->
+<!--  </div>-->
+<!--  <div class="container text-center">-->
+<!--    <div>-->
+<!--      <iframe width="100%" frameborder="0" height="400" src th:src="${candlestickWidget}"></iframe>-->
+<!--    </div>-->
+
+<!--    <div class="container text-left">-->
+<!--      <h2>Performance Details</h2>-->
+<!--    </div>-->
+
+<!--    <div class="container text-left">-->
+<!--      <h3 th:text="'Open: ' + ${stockQuoteObject.o}">Open: </h3>-->
+<!--      <h3 th:text="'Close: ' + ${stockQuoteObject.c}">Day High: </h3>-->
+<!--      <h3 th:text="'Day High: ' + ${stockQuoteObject.h}">Day High: </h3>-->
+<!--      <h3 th:text="'Day Low: ' + ${stockQuoteObject.l}">Day Low: </h3>-->
+<!--      <h3 th:text="'Previous Close: ' + ${stockQuoteObject.pc}">Previous Close: </h3>-->
+<!--      <h3 th:text="'Trade Volume: ' + ${stockQuoteObject.t}">Trade Volume: </h3>-->
+<!--    </div>-->
+
+
+<!--    <div class="container text-center">-->
+<!--        <h3 th:text="${stockFinancials}">52 Week High:</h3>-->
+<!--      <h3 th:text="${stockFinancialsObject}"></h3>-->
+<!--  </div>-->
+
+<!--    <div>-->
+<!--      <table class="table table-striped table-bordered">-->
+<!--        <thead class="thead-dark">-->
+<!--          <tr>-->
+<!--            <th th:text="'Current Price: ' + ${stockQuoteObject.c}">Current Price: </th>-->
+<!--            <th th:text="'Open: ' + ${stockQuoteObject.o}">Open: </th>-->
+<!--            <th th:text="'Day High: ' + ${stockQuoteObject.h}">Day High: </th>-->
+<!--            <th th:text="'Day Low: ' + ${stockQuoteObject.l}">Day Low: </th>-->
+<!--            <th th:text="'Previous Close: ' + ${stockQuoteObject.pc}">Previous Close: </th>-->
+<!--            <th th:text="'Trade Volume: ' + ${stockQuoteObject.t}">Trade Volume: </th>-->
+<!--          </tr>-->
+<!--        </thead>-->
+<!--      </table>-->
+<!--    </div>-->
+
+<!--    <div class="container-text-center">-->
+<!--      <form th:action="@{/stock/add}" method="post">-->
+<!--        <input type="submit" value="Save Stock" th:field="${stockQuoteObject}"/>-->
+<!--      </form>-->
+<!--    </div>-->
+
+  </div>
+</body>
+</html>

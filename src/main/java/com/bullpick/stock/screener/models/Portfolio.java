@@ -46,5 +46,9 @@ public class Portfolio {
         this.description = description;
     }
 
+    //add tags w/o touching collection directly
+    public void addStock(Stock stock) {
+        this.stocks.add(stock);
+    }
 
 }

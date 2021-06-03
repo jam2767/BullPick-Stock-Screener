@@ -57,7 +57,7 @@
             <th>Action</th>
             <tr th:each="portfolio : ${portfolios}">
             <td >
-              <a th:href="@{/portfolio(name=${portfolio.name})}"
+              <a th:href="'/portfolio/detail?portfolioId=' + ${portfolio.id}"
                  th:text="${portfolio.name}"/>
             </td>
             <td th:text="${portfolio.description}"></td>
@@ -66,6 +66,10 @@
               <form th:action="@{'/home/' + ${portfolio.id}}" th:method="get">
                 <input type="submit" value="Delete">
               </form>
+
+              <a th:href="'/stock/add-portfolio?portfolioId=' + ${portfolio.id}"
+                 th:text="'Add Stock'"/>
+
             </td>
             </tr>
           </tr>

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
 public class PortfolioController {
 
@@ -27,5 +29,22 @@ public class PortfolioController {
         portfolioRepository.save(newPortfolio);
 
         return "redirect:../home";
+    }
+
+    //detailed view of portfolio
+    @GetMapping("portfolio/detail")
+    public String displayPortfolioDetails(@RequestParam Integer portfolioId, Model model) {
+        Optional<Portfolio> result = portfolioRepository.findById(portfolioId);
+
+        if (result.isEmpty()) {
+            model.addAttribute("title", "Invalid Portfolio ID: " + portfolioId);
+        } else {
+            Portfolio portfolio = result.get();
+            model.addAttribute("title", portfolio.getName() + "Details");
+            model.addAttribute("portfolio", portfolio);
+            model.addAttribute("stocks", portfolio.getStocks());
+        }
+
+        return "portfolio_detail";
     }
 }

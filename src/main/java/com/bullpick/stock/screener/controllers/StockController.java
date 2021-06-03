@@ -8,6 +8,7 @@ import com.bullpick.stock.screener.models.StockQuote;
 import com.bullpick.stock.screener.models.data.PortfolioRepository;
 import com.bullpick.stock.screener.models.data.StockQuoteRepository;
 import com.bullpick.stock.screener.models.data.StockRepository;
+import com.bullpick.stock.screener.models.dto.PortfolioStockDTO;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import net.bytebuddy.description.method.MethodDescription;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 import java.lang.reflect.Type;
@@ -106,6 +108,33 @@ public class StockController {
         model.addAttribute("stocks", stockRepository.findAll());
         model.addAttribute(new Stock());
         return "add_stock";
+    }
+
+    @GetMapping("/stock/add-portfolio")
+    public String displayAddStockForm(@RequestParam Integer portfolioId, Model model){
+        Optional<Portfolio> result = portfolioRepository.findById(portfolioId);
+        Portfolio portfolio = result.get();
+        model.addAttribute("title","Add stock to:" + portfolio.getName());
+        model.addAttribute("stocks", stockRepository.findAll());
+        PortfolioStockDTO portfolioStock = new PortfolioStockDTO();
+        portfolioStock.setPortfolio(portfolio);
+        model.addAttribute("portfolioStock", portfolioStock);
+        return "add_stock";
+    }
+
+    @PostMapping("/stock/add-portfolio")
+    public String processAddStockForm(@ModelAttribute PortfolioStockDTO portfolioStock, Errors errors, Model model) {
+        if(!errors.hasErrors()) {
+            Portfolio portfolio = portfolioStock.getPortfolio();
+            Stock stock = portfolioStock.getStock();
+            if (!portfolio.getStocks().contains(stock)){
+                portfolio.addStock(stock);
+                portfolioRepository.save(portfolio);
+            }
+            return "redirect:/portfolio/detail?portfolioId=" + portfolio.getId();
+        }
+
+        return "redirect:add-portfolio.";
     }
 
     @PostMapping("/stock/add")
