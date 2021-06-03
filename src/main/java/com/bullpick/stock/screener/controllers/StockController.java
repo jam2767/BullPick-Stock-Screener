@@ -1,6 +1,7 @@
 package com.bullpick.stock.screener.controllers;
 
 
+import com.bullpick.stock.screener.models.Portfolio;
 import com.bullpick.stock.screener.models.Stock;
 import com.bullpick.stock.screener.models.StockFinancials;
 import com.bullpick.stock.screener.models.StockQuote;
@@ -20,6 +21,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class StockController {
@@ -107,11 +109,20 @@ public class StockController {
     }
 
     @PostMapping("/stock/add")
-    public String processAddStock(@ModelAttribute StockQuote stockQuoteObject, Model model) {
-        model.addAttribute(new StockQuote());
-        stockQuoteRepository.save(stockQuoteObject);
+    public String processAddStock(@ModelAttribute StockQuote stockQuoteObject, Model model, @RequestParam int portfolioId, @RequestParam int stockId, Portfolio portfolioObject) {
 
-        return "add_stock";
+        Optional optStock = stockRepository.findById(stockId);
+        if (optStock.isPresent()) {
+            Stock stock = (Stock) optStock.get();
+            model.addAttribute("portfolios", portfolioObject);
+            model.addAttribute("stock", stockQuoteObject);
+
+        }
+        model.addAttribute(new StockQuote());
+        //stockQuoteRepository.save(stockQuoteObject);
+        stockRepository.save(stockQuoteObject);
+
+        return "redirect:../home";
     }
 
    @GetMapping("/list")

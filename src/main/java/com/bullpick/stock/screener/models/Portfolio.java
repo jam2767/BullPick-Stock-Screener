@@ -15,20 +15,20 @@ public class Portfolio {
     private String name;
     private String description;
 
-//    @ManyToMany
-//    private final List<Stock> stocks = new ArrayList<>();
+    @ManyToMany
+    private final List<Stock> stocks = new ArrayList<>();
 
-//    public List<Stock> getStocks() {
-//        return stocks;
-//    }
+    public List<Stock> getStocks() {
+        return stocks;
+    }
 
     public int getId() {
         return id;
     }
 
-//    public void setId(int id) {
-//        this.id = id;
-//    }
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

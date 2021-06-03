@@ -20,7 +20,7 @@
 
   <div class="container text-center">
     <div>
-      <h1>BullPick Stock Screener User Home Page</h1>
+      <h1>BullPick Stock Screener</h1>
     </div>
     <div>
     <div class="container text-left">
@@ -36,6 +36,12 @@
         </form>
       </div>
 
+      <div class="container text-left">
+        <form th:action="@{/stock/add}" method="get">
+          <input type="submit" value="Add Stock to Portfolio"/>
+        </form>
+      </div>
+
     <div class="container text-right">
       <form th:action="@{/list}" method="get">
         <input type="submit" value="List"/>
@@ -48,12 +54,19 @@
           <tr>
             <th>Name</th>
             <th>Description</th>
+            <th>Action</th>
             <tr th:each="portfolio : ${portfolios}">
             <td >
               <a th:href="@{/portfolio(name=${portfolio.name})}"
                  th:text="${portfolio.name}"/>
             </td>
             <td th:text="${portfolio.description}"></td>
+            <td>
+<!--              <form th:name="_method" th:type="hidden" th:action="@{/home}" th:value="DELETE">-->
+              <form th:action="@{'/home/' + ${portfolio.id}}" th:method="get">
+                <input type="submit" value="Delete">
+              </form>
+            </td>
             </tr>
           </tr>
         </thead>

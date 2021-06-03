@@ -12,17 +12,17 @@ public class Stock {
     @GeneratedValue()
     private int id;
 
-//    @ManyToMany(mappedBy = "stocks")
-//    private final List<Portfolio> portfolios = new ArrayList<>();
+    @ManyToMany(mappedBy = "stocks")
+    private final List<Portfolio> portfolios = new ArrayList<>();
 
     private String description;
    private String symbol;
    private String type;
    private String mic;
 
-//    public List<Portfolio> getPortfolios() {
-//        return portfolios;
-//    }
+    public List<Portfolio> getPortfolios() {
+        return portfolios;
+    }
 
     public int getId() {
         return id;
