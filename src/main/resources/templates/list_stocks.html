@@ -25,7 +25,8 @@
       <h2></h2>
     </div>
     <div>
-      <table class="table table-striped table-bordered">
+      <input type="text" id="myInput" onkeyup="sortTable()" placeholder="Search for Company..">
+      <table id="stockTable" class="table table-striped table-bordered">
         <thead class="thead-dark">
           <tr>
             <th>Description</th>
@@ -62,4 +63,29 @@
     </div>
   </div>
 </body>
+
+<script>
+//sort list table of stocks
+  function sortTable() {
+  let input = document.getElementById("myInput");
+  let filter = input.value.toUpperCase();
+  let table = document.getElementById("stockTable");
+  let tr = table.getElementsByTagName("tr");
+  let td;
+  let textValue;
+
+  //loop through all table rows, hide non-matches
+  for (let i = 0; i < tr.length; i++) {
+   td = tr[i].getElementsByTagName("td")[0];
+   if (td) {
+   textValue = td.textContent || td.innerText;
+   if (textValue.toUpperCase().indexOf(filter) > -1) {
+    tr[i].style.display = "";
+    } else {
+      tr[i].style.display = "none";
+      }
+     }
+    }
+   }
+</script>
 </html>

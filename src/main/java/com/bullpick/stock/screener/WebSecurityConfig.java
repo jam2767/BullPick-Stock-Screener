@@ -52,6 +52,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/portfolio").authenticated()
                 .antMatchers("/list").authenticated()
                 .antMatchers("/add").authenticated()
+                .antMatchers("/add-portfolio").authenticated()
+                .antMatchers("/detail").authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()

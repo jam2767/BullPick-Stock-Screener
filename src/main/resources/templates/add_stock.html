@@ -31,7 +31,7 @@
 <!--        </form>-->
 <!--      </div>-->
 <p></p>
-      <form method="post">-->
+      <form method="post">
             <div class="form-group">
               <input type="hidden" th:field="${portfolioStock.portfolio}">
               <select th:field="${portfolioStock.stock}">
@@ -40,6 +40,7 @@
                         th:text="${stock.symbol}"
                 ></option>
               </select>
+                <a th:href="@{/list}">Find Stock</a>
             </div>
             <input type="submit" value="Add Stock to Portfolio" class="btn btn-success" />
 

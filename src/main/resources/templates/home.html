@@ -23,30 +23,32 @@
       <h1>BullPick Stock Screener</h1>
     </div>
     <div>
-    <div class="container text-left">
-      <h2>Portfolios</h2>
-      <form th:action="@{/portfolio/add}" method="get">
-        <input type="submit" value="Add Portfolio"/>
-      </form>
-    </div>
+    <p></p>
       <div class="container text-center">
         <form th:action="@{/stock}" method="get">
-        <input type="text" placeholder="Stock/Company Name" name="search">
+        <input type="text" placeholder="Stock Symbol" name="search">
         <button type="submit">Quick Search</button>
         </form>
       </div>
 
       <div class="container text-left">
-        <form th:action="@{/stock/add}" method="get">
-          <input type="submit" value="Add Stock to Portfolio"/>
+        <h2>Portfolios</h2>
+        <form th:action="@{/portfolio/add}" method="get">
+          <input type="submit" value="Add Portfolio"/>
         </form>
       </div>
+<!--      <div class="container text-left">-->
+<!--        <form th:action="@{/stock/add}" method="get">-->
+<!--          <input type="submit" value="Add Stock to Portfolio"/>-->
+<!--        </form>-->
+<!--      </div>-->
 
     <div class="container text-right">
       <form th:action="@{/list}" method="get">
         <input type="submit" value="List"/>
       </form>
     </div>
+      <p></p>
     </div>
     <div>
       <table class="table table-striped table-bordered">
